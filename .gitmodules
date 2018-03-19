@@ -1,3 +1,6 @@
 [submodule "revive"]
 	path = revive
 	url = https://github.com/heytribe/corona-revive
+[submodule "summary"]
+	path = summary
+	url = https://github.com/heytribe/corona-summary
