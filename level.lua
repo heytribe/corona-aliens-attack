@@ -272,7 +272,6 @@ function scene:create(event)
 	messenger.addMessageListener('popAlien',      popAlien)
 	messenger.addMessageListener('showUserLost',  showUserLost)
 	messenger.addMessageListener('gameOver',	  gameOver)
-	messenger.addMessageListener('scoresUpdated', scoresUpdated)
 
 	aliens.addAlienListener('alienKilled', 			 	alienKilled)
 	aliens.addAlienListener('alienWillReachTheGround', 	alienWillReachTheGround)

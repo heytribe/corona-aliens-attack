@@ -234,6 +234,7 @@ Runtime:addEventListener('userJoined',   engine.userJoined)
 Runtime:addEventListener('userLeft',     engine.userLeft)
 
 messenger.addMessageListener('newGame',			engine.newGame)
+messenger.addMessageListener('scoresUpdated', 	engine.scoresUpdated)
 messenger.addMessageListener('showUserLost',  	engine.showUserLost)
 messenger.addMessageListener('userGameOver',  	engine.userGameOver)
 messenger.addMessageListener('gameOver',	  	engine.gameOver)
