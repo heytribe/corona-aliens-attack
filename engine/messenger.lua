@@ -1,3 +1,11 @@
+---------------------------------------------------------------------------------
+-- Modules
+
+local inspect = require('engine.inspect')
+
+---------------------------------------------------------------------------------
+-- Parameters
+
 local ACTION_POP_ALIEN = "popAlien"
 local ALIEN_KEY        = "alien"
 local FROM_KEY         = "from"
@@ -33,27 +41,30 @@ local function receiveMessage(event)
 
 		if action then
 
-			local listener = listeners[action]
-			if listener then
+			local listenersForAction = listeners[action]
+			if listenersForAction then
 
-				if action == ACTION_NEW_GAME then
-					listener(message[FROM_KEY], message[TIMESTAMP_KEY], message[PLAYERS_KEY])
+				for i, listener in ipairs(listenersForAction) do
+  					if action == ACTION_NEW_GAME then
+						listener(message[FROM_KEY], message[TIMESTAMP_KEY], message[PLAYERS_KEY])
 
-				elseif action == ACTION_POP_ALIEN then
-					listener(message[ALIEN_KEY], message[OCCURRENCE_KEY])
+					elseif action == ACTION_POP_ALIEN then
+						listener(message[ALIEN_KEY], message[OCCURRENCE_KEY])
 
-				elseif action == ACTION_USER_GAME_OVER then
-					listener(message[USER_KEY])
+					elseif action == ACTION_USER_GAME_OVER then
+						listener(message[USER_KEY])
 
-				elseif action == ACTION_USER_READY then
-					listener(message[USER_KEY])
-				
-				elseif action == ACTION_SHOW_USER_LOST then
-					listener(message[USER_KEY])
+					elseif action == ACTION_USER_READY then
+						listener(message[USER_KEY])
+					
+					elseif action == ACTION_SHOW_USER_LOST then
+						listener(message[USER_KEY])
 
-				elseif action == ACTION_GAME_OVER then
-					listener(message[USER_KEY])
+					elseif action == ACTION_GAME_OVER then
+						listener(message[USER_KEY])
+					end
 				end
+
 			end
 
 		elseif context then
@@ -61,9 +72,11 @@ local function receiveMessage(event)
 			local scores = message[SCORES_KEY]
 			if context == 'scores' and scores then
 
-				local listener = listeners['scoresUpdated']
-				if listener then
-					listener(scores)
+				local listenersForAction = listeners['scoresUpdated']
+				if listenersForAction then
+					for i, listener in ipairs(listenersForAction) do
+						listener(scores)
+					end
 				end
 			end
 		end
@@ -73,7 +86,7 @@ end
 Runtime:addEventListener('receiveMessage', receiveMessage)
 
 local function broadcastMessage(message)
-	-- log('broadcastMessage')
+	log('messenger - broadcastMessage -> ' .. inspect(message))
 
 	local event = { name='coronaView', event='broadcastMessage', message=message }
 	Runtime:dispatchEvent(event)
@@ -81,7 +94,7 @@ local function broadcastMessage(message)
 end
 
 local function sendMessage(message, to)
-	log('sendMessage')
+	log('messenger - sendMessage -> ' .. message)
 
 	Runtime:dispatchEvent({ name='coronaView', event='sendMessage', message=message, to=to })
 end
@@ -91,10 +104,18 @@ end
 local exports = {}
 
 exports.addMessageListener = function(action, listener)
-	listeners[action] = listener
+
+	local listenersForAction = listeners[action]
+	if listenersForAction then
+		table.insert(listenersForAction, listener)
+		listeners[action] = listenersForAction
+	else
+		listeners[action] = { listener }
+	end
 end
 
 exports.broadcastScores = function(playersScores)
+	log('messenger - broadcastScores')
 
 	local message = {}
 	message[CONTEXT_KEY] = 'scores'
@@ -107,8 +128,8 @@ exports.broadcastScores = function(playersScores)
 end
 
 exports.broadcastNewGame = function(fromUserId, timestamp, playersIds)
-
 	log('messenger - broadcastNewGame - fromUserId = ' .. fromUserId .. ' - timestamp = ' .. timestamp)
+
 	local message = {}
 	message[ACTION_KEY]    = ACTION_NEW_GAME
 	message[FROM_KEY]      = fromUserId
