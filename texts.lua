@@ -33,7 +33,7 @@ local function fadeInAndMoveUp(target, params)
 end
 
 local function showMessage (message, params) 
-	log('showMessage - ' .. message)
+	log('texts - showMessage - ' .. message)
 
 	local text = display.newText( message:upper(), screenW/2, screenH/2 + 20, fontName, defaultSize )
  	text.alpha = 0
@@ -48,7 +48,7 @@ end
 local exports = {}
 
 exports.showTitle = function (params) 
-	log('showTitle')
+	log('texts - showTitle')
 
 	local titleText = display.newText( title:upper(), screenW/2 + 20, screenH/2 + 20, fontName, titleSize )
  	titleText.alpha = 0

@@ -73,7 +73,7 @@ end
 Runtime:addEventListener('receiveMessage', receiveMessage)
 
 local function broadcastMessage(message)
-	log('broadcastMessage')
+	-- log('broadcastMessage')
 
 	local event = { name='coronaView', event='broadcastMessage', message=message }
 	Runtime:dispatchEvent(event)
@@ -108,6 +108,7 @@ end
 
 exports.broadcastNewGame = function(fromUserId, timestamp, playersIds)
 
+	log('messenger - broadcastNewGame - fromUserId = ' .. fromUserId .. ' - timestamp = ' .. timestamp)
 	local message = {}
 	message[ACTION_KEY]    = ACTION_NEW_GAME
 	message[FROM_KEY]      = fromUserId

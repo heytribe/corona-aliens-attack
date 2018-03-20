@@ -16,7 +16,7 @@ local backgroundImageHeight = 542
 ---------------------------------------------------------------------------------
 
 local function loadColorBackground() 
-	log('loadColorBackground')
+	log('background - loadColorBackground')
 
 	local background = display.newImageRect("assets/images/bg_0_color.png", screenW, screenH - backgroundImageHeight)
 	background.anchorX = 0 
@@ -26,7 +26,7 @@ local function loadColorBackground()
 end
 
 local function loadGradient() 
-	log('loadGradient')
+	log('background - loadGradient')
 
 	local h = backgroundImageHeight
 
@@ -39,7 +39,7 @@ local function loadGradient()
 end
 
 local function loadCity()
-	log('loadCity')
+	log('background - loadCity')
 
 	local h = screenW * 204 / 320 
 
@@ -52,7 +52,7 @@ local function loadCity()
 end
 
 local function loadFog()
-	log('loadFog')
+	log('background - loadFog')
 
 	local fog = emitter.newFogEmitter()
 	fog.anchorX = 0
@@ -63,7 +63,7 @@ local function loadFog()
 end
 
 local function loadStars()
-	log('loadStars')
+	log('background - loadStars')
 
 	local stars = emitter.newStarsEmitter()
 	stars.anchorX = 0
@@ -73,7 +73,7 @@ local function loadStars()
 end
 
 local function popCar()
-	log('popCar')
+	-- log('popCar')
 
 	local car = display.newImageRect( "assets/images/car.png", 31, 15 )
 	backgroundGroup:insert(car)
@@ -85,7 +85,7 @@ local function popCar()
 end
 
 local function popStars()
-	log('popStars')
+	log('background - popStars')
 
 	for i=1,5 do
 		local star = display.newImageRect( "assets/images/star.png", 16, 16 )
@@ -102,7 +102,7 @@ local function popStars()
 end
 
 local function popSmallCloud()
-	log('popSmallCloud')
+	-- log('popSmallCloud')
 
 	local cloudType = math.random(0,2)
 	local cloud
@@ -123,7 +123,7 @@ local function popSmallCloud()
 end
 
 local function popCloud()
-	log('popCloud')
+	-- log('popCloud')
 
 	local cloudType = math.random(0,2)
 	local cloud
@@ -144,7 +144,7 @@ local function popCloud()
 end
 
 local function changeGradientType(gradientType)
-	log('changeGradientType')
+	log('background - changeGradientType')
 
 	if not (currentGradientType == gradientType) then
 		currentGradientType = gradientType
@@ -185,7 +185,7 @@ local function changeGradientType(gradientType)
 end
 
 local function startAnimating()
-	log('startAnimating')
+	log('background - startAnimating')
 
 	table.insert(timers, timer.performWithDelay( 2000, popCar,        -1))
 	-- table.insert(timers, timer.performWithDelay(10000, popStars,      -1))
@@ -196,7 +196,7 @@ local function startAnimating()
 end
 
 local function stopAnimating()
-	log('stopAnimating')
+	log('background - stopAnimating')
 
 	for i,t in ipairs(timers) do
 		timer.cancel(t)
@@ -236,13 +236,13 @@ exports.load = function()
 end
 
 exports.resetGradient = function()
-	log('resetGradient')
+	log('background - resetGradient')
 
 	changeGradientType(0)
 end
 
 exports.switchGradient = function(score)
-	log('switchGradient')
+	log('sbackground - witchGradient')
 
 	local level = model.levelByScore(score)
 	changeGradientType(level.background)

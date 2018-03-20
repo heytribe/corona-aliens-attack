@@ -19,7 +19,7 @@ local groundHeight = 90
 ---------------------------------------------------------------------------------
 
 local function loadGround()
-	log('loadGround')
+	log('aliens - loadGround')
 
 	ground = display.newRect(0, screenH, screenW, groundHeight)
 	ground.anchorX = 0
@@ -30,7 +30,7 @@ local function loadGround()
 end
 
 local function loadTopGradient()
-	log('loadTopGradient')
+	log('aliens - loadTopGradient')
 
 	topGradient = display.newImageRect("assets/images/top_gradient.png", screenW, screenW/2)
 	topGradient.anchorX = 0 
@@ -189,7 +189,7 @@ local alienSourceY = -groundHeight
 local alienTargetY = screenH - groundHeight
 
 aliens.pop = function(alien, paceFactor)
-	log('pop')
+	-- log('pop')
 	
 	local alienGroup, alienImage, alienGradient, alienZone
 
@@ -249,7 +249,7 @@ aliens.pop = function(alien, paceFactor)
 end
 
 aliens.changeAliensSpeed = function(paceFactor)
-	log('changeAliensSpeed - ' .. paceFactor)
+	log('aliens - changeAliensSpeed - ' .. paceFactor)
 	
 	for i=1,group.numChildren do
 
@@ -259,9 +259,6 @@ aliens.changeAliensSpeed = function(paceFactor)
 
 			local remainingPercent = 1 - (alienGroup.y / (alienTargetY - alienSourceY))
 			local remainingTime = remainingPercent * alienGroup.alien.speed * 1000 * paceFactor
-
-			log('remainingPercent = ' .. remainingPercent)
-			log('remainingTime = ' .. remainingTime)
 
 			transition.cancel(alienGroup)
 
@@ -280,7 +277,7 @@ aliens.changeAliensSpeed = function(paceFactor)
 end
 
 aliens.killAliens = function()
-	log('killAliens')
+	log('aliens - killAliens')
 	
 	local total = 0
 
@@ -299,7 +296,7 @@ aliens.killAliens = function()
 end
 
 aliens.gameStarted = function()
-	log('gameStarted')
+	log('aliens - gameStarted')
 
 	gameEnded = false
 	
@@ -311,18 +308,18 @@ aliens.gameStarted = function()
 end
 
 aliens.endCollision = function(alienGroup)
-	log('endCollision')
+	log('aliens - endCollision')
 	alienDidCollide(alienGroup)
 end
 
 aliens.gameEnded = function()
-	log('gameEnded')
+	log('aliens - gameEnded')
 
 	gameEnded = true
 end
 
 aliens.create = function(occurrence, level)
-	log('create')
+	-- log('create')
 	
 	local alien = {}
 
