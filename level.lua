@@ -86,7 +86,6 @@ local function askRevive(alienGroup)
 
 		if reviveData and reviveData.gameId and reviveData.minScoreTrigger and reviveData.minRatioTrigger and score and score > reviveData.minScoreTrigger then
 
-			--[[
 			local bestScore = persistenceStore.bestScore(reviveData.gameId)
 			local canRevive = persistenceStore.canRevive(reviveData.gameId)
 
@@ -99,8 +98,7 @@ local function askRevive(alienGroup)
 				showReviveOverlay()
 				return
 			end
-			--]]
-			
+
 		end
 	end 
 
@@ -201,7 +199,7 @@ local function alienDidReachTheGround()
 
 	if score then
 		if reviveData and reviveData.gameId then
-			-- persistenceStore.saveScore(score, reviveData.gameId)
+			persistenceStore.saveScore(score, reviveData.gameId)
 		end
 		Runtime:dispatchEvent({ name='coronaView', event='saveScore', score=score })
 	end
@@ -289,7 +287,7 @@ function scene:create(event)
 	-- Load best score from native if needed
 	reviveData = Runtime:dispatchEvent({ name='coronaView', event='reviveData' })
 	if reviveData and reviveData.gameId then
-		-- persistenceStore.bestScore(reviveData.gameId)
+		persistenceStore.bestScore(reviveData.gameId)
 	end
 
 end
