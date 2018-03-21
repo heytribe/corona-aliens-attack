@@ -86,7 +86,7 @@ end
 Runtime:addEventListener('receiveMessage', receiveMessage)
 
 local function broadcastMessage(message)
-	log('messenger - broadcastMessage -> ' .. inspect(message))
+	-- log('messenger - broadcastMessage -> ' .. inspect(message))
 
 	local event = { name='coronaView', event='broadcastMessage', message=message }
 	Runtime:dispatchEvent(event)
@@ -94,7 +94,7 @@ local function broadcastMessage(message)
 end
 
 local function sendMessage(message, to)
-	log('messenger - sendMessage -> ' .. message)
+	-- log('messenger - sendMessage -> ' .. message)
 
 	Runtime:dispatchEvent({ name='coronaView', event='sendMessage', message=message, to=to })
 end
@@ -115,7 +115,7 @@ exports.addMessageListener = function(action, listener)
 end
 
 exports.broadcastScores = function(playersScores)
-	log('messenger - broadcastScores')
+	-- log('messenger - broadcastScores')
 
 	local message = {}
 	message[CONTEXT_KEY] = 'scores'
