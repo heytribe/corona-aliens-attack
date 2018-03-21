@@ -1,19 +1,24 @@
-local screenW, screenH = display.actualContentWidth, display.actualContentHeight
-
-local group, currentBackgroundGroup
-
-local ground, city
-local currentGradientType = 0
-
-local timers = {}
+---------------------------------------------------------------------------------
+-- Modules
 
 local model   = require 'model'
 local emitter = require 'emitter'
 
-local groundHeight = 90
+---------------------------------------------------------------------------------
+-- Parameters
+
+local group, currentBackgroundGroup
+local ground, city
+
+local screenW, screenH 		= display.actualContentWidth, display.actualContentHeight
+local exports 				= {}
+local timers 				= {}
+local currentGradientType 	= 0
+local groundHeight 			= 90
 local backgroundImageHeight = 542
 
 ---------------------------------------------------------------------------------
+-- Local Functions
 
 local function loadColorBackground() 
 	log('background - loadColorBackground')
@@ -206,8 +211,7 @@ local function stopAnimating()
 end
 
 ---------------------------------------------------------------------------------
-
-local exports = {}
+-- Export Functions
 
 exports.shake = function() 
 

@@ -1,22 +1,27 @@
-local screenW, screenH = display.actualContentWidth, display.actualContentHeight
+---------------------------------------------------------------------------------
+-- Modules
 
+local model   = require 'model'
+local emitter = require 'emitter'
+
+---------------------------------------------------------------------------------
+-- Parameters
+
+local screenW, screenH = display.actualContentWidth, display.actualContentHeight
 local group
 local ground, topGradient
 
-local listeners = {}
-
-local gameEnded = false
+local listeners 	= {}
+local aliens 		= {}
+local gameEnded 	= false
+local groundHeight 	= 90
 
 local EVENT_ALIEN_KILLED				= 'alienKilled'
 local EVENT_ALIEN_WILL_REACH_THE_GROUND	= 'alienWillReachTheGround'
 local EVENT_ALIEN_DID_REACH_THE_GROUND 	= 'alienDidReachTheGround'
 
-local model   = require 'model'
-local emitter = require 'emitter'
-
-local groundHeight = 90
-
 ---------------------------------------------------------------------------------
+-- Local Functions
 
 local function loadGround()
 	log('aliens - loadGround')
@@ -166,10 +171,8 @@ local function alienDidCollide(alienGroup)
 	end
 end
 
-
 ---------------------------------------------------------------------------------
-
-local aliens = {}
+-- Export Functions
 
 aliens.addAlienListener = function(event, listener)
 	listeners[event] = listener

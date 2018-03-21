@@ -1,15 +1,22 @@
-local screenW, screenH = display.actualContentWidth, display.actualContentHeight
+---------------------------------------------------------------------------------
+-- Modules
 
 local strings = require "strings"
 local emitter = require "emitter"
+
+---------------------------------------------------------------------------------
+-- Parameters
 
 local group
 local pendingShownBomb
 local pendingShownWatch
 
-local listeners = {}
+local screenW, screenH 	= display.actualContentWidth, display.actualContentHeight
+local exports 			= {}
+local listeners 		= {}
 
 ---------------------------------------------------------------------------------
+-- Local Functions
 
 local function removeShownBonuses (group)
 
@@ -98,8 +105,7 @@ local function showBonus (text, icon, useEventName, otherBonusGroup)
 end
 
 ---------------------------------------------------------------------------------
-
-local exports = {}
+-- Export Functions
 
 exports.load = function()
 	group = display.newGroup()

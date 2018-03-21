@@ -17,14 +17,15 @@ local messenger  		= require "engine.messenger"
 ---------------------------------------------------------------------------------
 -- Parameters
 
-local scene = composer.newScene()
-local previousOccurrence = 0
 local createAlienTimer
 local paceFactorTimer
-local aliensPaceFactor = 1
-local disableAlienCreation = false
 local reviveData
 local reviveAlienGroup
+
+local scene 				= composer.newScene()
+local previousOccurrence 	= 0
+local aliensPaceFactor 		= 1
+local disableAlienCreation 	= false
 
 ---------------------------------------------------------------------------------
 -- Sound

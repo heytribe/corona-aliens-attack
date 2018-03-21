@@ -1,4 +1,10 @@
+---------------------------------------------------------------------------------
+-- Modules
+
 local json = require 'json'
+
+---------------------------------------------------------------------------------
+-- Local Functions
 
 local function readParams(path)
 
@@ -10,14 +16,20 @@ local function readParams(path)
 	return json.decode(emitterData)
 end
 
-local params = {
+---------------------------------------------------------------------------------
+-- Parameters
+
+local exports 	= {}
+local params 	= {
 	alien_falling = readParams('assets/particles/alien_falling.json'),
 	fog 		  = readParams('assets/particles/fog.json'),
 	bonus 		  = readParams('assets/particles/bonus.json'),
 	boom 		  = readParams('assets/particles/boom.json'),
 	stars 		  = readParams('assets/particles/stars.json')
 }
-local exports = {}
+
+---------------------------------------------------------------------------------
+-- Export Functions
 
 exports.newAlienFallingEmitter = function ()
 	return display.newEmitter(params.alien_falling)

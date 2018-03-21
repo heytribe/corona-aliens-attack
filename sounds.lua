@@ -1,17 +1,21 @@
-local loadedSounds  = {}
-local loadedStreams = {}
-
-local playingSoundtrack
-local currentSoundtrackIndex
+---------------------------------------------------------------------------------
+-- Modules
 
 local model = require 'model'
 
 ---------------------------------------------------------------------------------
+-- Parameters
 
+local playingSoundtrack
+local currentSoundtrackIndex
+local loadedSounds  = {}
+local loadedStreams = {}
 local exports = {}
-
 exports.isVolumeEnabled = true
 exports.shouldHandleSoundNatively = false
+
+---------------------------------------------------------------------------------
+-- Local Functions
 
 local function play(sound, params)
 	if shouldHandleSoundNatively then
@@ -47,6 +51,9 @@ local function soundPath(path)
 
 	return "assets/sounds/" .. path .. ".mp3"
 end
+
+---------------------------------------------------------------------------------
+-- Export Functions
 
 exports.load = function()
 	if system.getInfo("platform") == "android" then

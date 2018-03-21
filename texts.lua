@@ -1,17 +1,20 @@
-local screenW, screenH = display.actualContentWidth, display.actualContentHeight
+---------------------------------------------------------------------------------
+-- Modules
 
 local strings	= require "strings"
 
 ---------------------------------------------------------------------------------
+-- Parameters
 
-local fontName = 'Gulkave Regular'
-
-local title = strings('title')
-
-local defaultSize = 20
-local titleSize   = 40
+local screenW, screenH 	= display.actualContentWidth, display.actualContentHeight
+local fontName 			= 'Gulkave Regular'
+local title 			= strings('title')
+local defaultSize 		= 20
+local titleSize   		= 40
+local exports 			= {}
 
 ---------------------------------------------------------------------------------
+-- Local Functions
 
 local function fadeOutAndMoveDown(target, params)
 	
@@ -44,8 +47,7 @@ local function showMessage (message, params)
 end
 
 ---------------------------------------------------------------------------------
-
-local exports = {}
+-- Export Functions
 
 exports.showTitle = function (params) 
 	log('texts - showTitle')

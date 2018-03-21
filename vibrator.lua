@@ -1,10 +1,18 @@
+---------------------------------------------------------------------------------
+-- Parameters
+
 local exports = {}
 
-local function vibrate(vibrationType)
+---------------------------------------------------------------------------------
+-- Local Functions
 
+local function vibrate(vibrationType)
 	local event = { name='coronaView', event='vibrate', type=vibrationType }
 	Runtime:dispatchEvent(event)
 end
+
+---------------------------------------------------------------------------------
+-- Export Functions
 
 exports.send = function()
 	vibrate()
