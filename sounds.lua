@@ -22,10 +22,13 @@ local function play(sound, params)
 end
 
 local function stop(sound)
+	log('sounds - stop')
 	if shouldHandleSoundNatively then
 		Runtime:dispatchEvent({ name='coronaView', event='stopSound' })
-	else
-		audio.stop(sound)
+	else 
+		if sound then
+			audio.stop(sound)
+		end
 	end
 end
 
@@ -109,10 +112,9 @@ exports.playSoundtrack = function(score)
 end
 
 exports.stopSoundtrack = function()
-	if playingSoundtrack then
-		stop(playingSoundtrack)
-		playingSoundtrack = nil
-	end
+	log('sounds - stopSoundtrack')
+	stop(playingSoundtrack)
+	playingSoundtrack = nil
 	currentSoundtrackIndex = nil
 end
 
