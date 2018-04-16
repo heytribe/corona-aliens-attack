@@ -4,3 +4,6 @@
 [submodule "summary"]
 	path = summary
 	url = https://github.com/heytribe/corona-summary
+[submodule "sounds"]
+	path = sounds
+	url = https://github.com/heytribe/corona-sounds.git

@@ -3,9 +3,6 @@
 
 local composer 			= require "composer"
 local physics  			= require "physics"
-local sounds     		= require "sounds"
-local texts      		= require "texts"
-local vibrator   		= require "vibrator"
 local background 		= require "background"
 local aliens     		= require "aliens"
 local model      		= require "model"
@@ -13,6 +10,10 @@ local bonus      		= require "bonus"
 local persistenceStore 	= require "revive.persistenceStore"
 local engine			= require "engine.engine"
 local messenger  		= require "engine.messenger"
+local sounds     		= require "sounds.sounds"
+
+local texts      		= require "texts"
+local vibrator   		= require "vibrator"
 
 ---------------------------------------------------------------------------------
 -- Parameters
