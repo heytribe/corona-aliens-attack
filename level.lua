@@ -37,7 +37,10 @@ local function toggleVolume(event)
 		if not event.isEnabled then
 			sounds.stopSoundtrack()
 		else
-			sounds.playSoundtrack(0)
+			local level = model.levelByScore(0)
+			if level then
+				sounds.playSoundtrack(level.soundtrack)
+			end
 		end
 	end
 end
@@ -185,7 +188,10 @@ local function alienKilled(points)
 	end
 
 	background.switchGradient(score)
-	sounds.playSoundtrack(score)
+	local level = model.levelByScore(score)
+	if level then
+		sounds.playSoundtrack(level.soundtrack)
+	end
 end
 
 local function alienWillReachTheGround(alienGroup) 
@@ -215,7 +221,10 @@ end
 
 local function startGame(event)
 	sounds.isVolumeEnabled = event.isVolumeEnabled
-	sounds.playSoundtrack(0)
+	local level = model.levelByScore(0)
+	if level then
+		sounds.playSoundtrack(level.soundtrack)
+	end
 end
 
 local function newGame(fromUserId, timestamp, playersIds)
@@ -223,7 +232,10 @@ local function newGame(fromUserId, timestamp, playersIds)
 
 	aliens.gameStarted()
 	background.resetGradient()
-	sounds.playSoundtrack(0)
+	local level = model.levelByScore(0)
+	if level then
+		sounds.playSoundtrack(level.soundtrack)
+	end
 
 	texts.showTitle({ onComplete=function ()
 		texts.showLetsGo()

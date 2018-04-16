@@ -1,9 +1,4 @@
 ---------------------------------------------------------------------------------
--- Modules
-
-local model = require 'model'
-
----------------------------------------------------------------------------------
 -- Parameters
 
 local playingSoundtrack
@@ -99,19 +94,18 @@ exports.dispose = function()
 	end
 end
 
-exports.playSoundtrack = function(score)
+exports.playSoundtrack = function(soundtrack)
 	if exports.isVolumeEnabled then
 
-		local level = model.levelByScore(score)
-		if not (currentSoundtrackIndex == level.soundtrack) then
+		if not (currentSoundtrackIndex == soundtrack) then
 			
 			if playingSoundtrack then
 				stop(playingSoundtrack)
 			end
 
 			if not isSimulator then
-				currentSoundtrackIndex = level.soundtrack
-				playingSoundtrack = playSoundIfEnabled(loadedStreams[level.soundtrack], { loops=-1 })
+				currentSoundtrackIndex = soundtrack
+				playingSoundtrack = playSoundIfEnabled(loadedStreams[soundtrack], { loops=-1 })
 			end
 
 		end
