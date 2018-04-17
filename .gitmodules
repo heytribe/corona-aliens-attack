@@ -7,3 +7,6 @@
 [submodule "sounds"]
 	path = sounds
 	url = https://github.com/heytribe/corona-sounds.git
+[submodule "localengine"]
+	path = localengine
+	url = https://github.com/heytribe/corona-local-engine.git
