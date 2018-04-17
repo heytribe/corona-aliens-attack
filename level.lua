@@ -7,6 +7,7 @@ local background 		= require "background"
 local aliens     		= require "aliens"
 local model      		= require "model"
 local bonus      		= require "bonus"
+local localmessenger  	= require "localmessenger"
 
 local engine			= require "localengine.engine"
 local messenger  		= require "localengine.messenger"
@@ -154,7 +155,10 @@ local function createAlien(occurrence)
 	local level = model.levelByScore(occurrence)
 	local alien = aliens.create(occurrence, level)
 
-	messenger.broadcastPopAlien(alien, occurrence)
+	local message = localmessenger.popAlienMessage(alien, occurrence)
+	if message then
+		messenger.broadcastMessage(message)
+	end
 
 	createAlienTimer = timer.performWithDelay(level.popInterval() * 1000, function () createAlien(occurrence + 1) end)
 end
