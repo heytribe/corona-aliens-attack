@@ -12,8 +12,7 @@ local engine			= require "localengine.engine"
 local messenger  		= require "localengine.messenger"
 local persistenceStore 	= require "revive.persistenceStore"
 local sounds     		= require "sounds.sounds"
-
-local vibrator   		= require "vibrator"
+local vibrator   		= require "sounds.vibrator"
 
 ---------------------------------------------------------------------------------
 -- Parameters
