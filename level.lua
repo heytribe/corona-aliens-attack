@@ -57,7 +57,7 @@ end
 
 local function useWatch()
 	log('level - useWatch')
-	sounds.playWatch()
+	sounds.playSound("watch")
 	aliensPaceFactor = 3
 	aliens.changeAliensSpeed(3)
 	paceFactorTimer = timer.performWithDelay(5000, function ()
@@ -179,7 +179,7 @@ end
 local function alienKilled(points) 
 	log('level - alienKilled')
 
-	sounds.playAlienKilled()
+	sounds.playSound("alienKilled")
 	vibrator.sendImpact()
 
 	local score = engine.addPointsToScore(points)
@@ -251,7 +251,7 @@ end
 
 local function showUserLost(userId)
 	log('level - showUserLost')
-	sounds.playPlayerLost()
+	sounds.playSound("playerLost")
 end
 
 local function becomeGameMaster(userId)
@@ -268,7 +268,7 @@ local function gameOver(winnerId)
 	if paceFactorTimer  then timer.cancel(paceFactorTimer)  end
 	if createAlienTimer then timer.cancel(createAlienTimer) end
 	
-	sounds.playPlayerWon()
+	sounds.playSound("playerWon")
 end
 
 ---------------------------------------------------------------------------------
