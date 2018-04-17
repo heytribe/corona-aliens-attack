@@ -7,9 +7,10 @@ local background 		= require "background"
 local aliens     		= require "aliens"
 local model      		= require "model"
 local bonus      		= require "bonus"
+
+local engine			= require "localengine.engine"
+local messenger  		= require "localengine.messenger"
 local persistenceStore 	= require "revive.persistenceStore"
-local engine			= require "engine.engine"
-local messenger  		= require "engine.messenger"
 local sounds     		= require "sounds.sounds"
 
 local vibrator   		= require "vibrator"
