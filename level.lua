@@ -254,6 +254,11 @@ local function showUserLost(userId)
 	sounds.playPlayerLost()
 end
 
+local function becomeGameMaster(userId)
+	log('level - becomeGameMaster')
+	createAlien(previousOccurrence)
+end
+
 local function gameOver(winnerId)
 	log('level - gameOver')
 
@@ -292,6 +297,8 @@ function scene:create(event)
 
 	bonus.addBonusListener('useBomb',  useBomb)
 	bonus.addBonusListener('useWatch', useWatch)
+
+	engine.addEngineListener('becomeGameMaster',  becomeGameMaster)
 
 	Runtime:addEventListener('startGame',    startGame)
 	Runtime:addEventListener('toggleVolume', toggleVolume)
