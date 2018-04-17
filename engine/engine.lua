@@ -2,7 +2,7 @@
 -- Modules
 
 local messenger 	= require "engine.messenger"
-local texts      	= require "texts"
+local texts      	= require "engine.texts"
 
 ---------------------------------------------------------------------------------
 -- Parameters
@@ -205,6 +205,10 @@ engine.newGame = function(fromUserId, timestamp, playersIds)
 	for i,v in ipairs(playersIds) do
 		playingIds[v] = true
 	end
+
+	texts.showTitle({ onComplete=function ()
+		texts.showLetsGo()
+	end })
 end
 
 engine.takeOverGame = function()

@@ -12,7 +12,6 @@ local engine			= require "engine.engine"
 local messenger  		= require "engine.messenger"
 local sounds     		= require "sounds.sounds"
 
-local texts      		= require "texts"
 local vibrator   		= require "vibrator"
 
 ---------------------------------------------------------------------------------
@@ -237,10 +236,6 @@ local function newGame(fromUserId, timestamp, playersIds)
 	if level then
 		sounds.playSoundtrack(level.soundtrack)
 	end
-
-	texts.showTitle({ onComplete=function ()
-		texts.showLetsGo()
-	end })
 
 	previousOccurrence = 0
 	if engine.isMaster() then
