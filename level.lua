@@ -277,6 +277,7 @@ end
 function scene:create(event)
 	log('level - scene:create')
 
+	engine.setFontName('Gulkave Regular')
 	physics.start()
 	physics.pause()
 	sounds.load()
